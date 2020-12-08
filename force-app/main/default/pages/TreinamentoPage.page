@@ -1,0 +1,65 @@
+<apex:page standardController="Account" extensions="Treinamento_ctr">
+    
+    
+    <apex:form >
+        
+  	<!--<c:TreinamentoComponenteActionStatus />-->
+    <apex:outputPanel id="panelTeste">   
+        
+        <apex:pageBlock title="Hello World">
+            <apex:outputPanel rendered="{!fMsgError != null}" style="color: red;">
+                {!fMsgError}
+            </apex:outputPanel>
+            
+            <apex:outputPanel id="panelReadOnly" rendered="{!NOT(fEditMode)}">
+                 <apex:pageBlockSection showHeader="false" columns="2">
+
+                     <apex:pageBlockSectionItem dataTitle="Cep">
+                         <apex:outputLabel for="cepbusca" value="CEP:"/> 
+                         <apex:outputText value="{!fCep}" id="cepbusca"/>  
+                     </apex:pageBlockSectionItem>
+                     <apex:pageBlockSectionItem dataTitle="">
+                     </apex:pageBlockSectionItem>      
+                     
+                     <apex:pageBlockSectionItem dataTitle="Name">
+                         <apex:outputLabel for="rua" value="Name:"/>
+                         <apex:outputText value="{!fAccName}" id="name"  styleClass="name"/>   
+                     </apex:pageBlockSectionItem>
+                     
+                     <apex:pageBlockSectionItem dataTitle="Phone">
+                         <apex:outputLabel for="rua" value="Phone:"/>
+                         <apex:outputText value="{!fAccPhone}" id="phone" styleClass="phone"/>   
+                     </apex:pageBlockSectionItem>            
+                </apex:pageBlockSection>                
+            </apex:outputPanel>
+            
+            <apex:outputPanel id="panelEditMode" rendered="{!fEditMode}">
+                <apex:pageBlockSection showHeader="false" columns="2">
+
+                     <apex:pageBlockSectionItem dataTitle="Cep">
+                         <apex:outputLabel for="cepbusca" value="CEP:"/>
+                         <apex:commandButton action="{!consultaCep}" value="Pesquisar CEP" dir="LTR" reRender="panelEditMode" status="loading"> 
+                             <apex:inputText value="{!fCep}" id="cepbusca" maxlength="9"/>  
+                         </apex:commandButton>  
+                     </apex:pageBlockSectionItem>
+                     <apex:pageBlockSectionItem dataTitle="">
+                     </apex:pageBlockSectionItem>      
+                     
+                     <apex:pageBlockSectionItem dataTitle="Name">
+                         <apex:outputLabel for="rua" value="Name:"/>
+                         <apex:inputTextarea value="{!fAccName}" id="name"  cols="50" styleClass="name"/>   
+                     </apex:pageBlockSectionItem>
+                     
+                     <apex:pageBlockSectionItem dataTitle="Phone">
+                         <apex:outputLabel for="rua" value="Phone:"/>
+                         <apex:inputText value="{!fAccPhone}" id="phone" styleClass="phone"/>   
+                     </apex:pageBlockSectionItem>            
+                </apex:pageBlockSection>                 
+            </apex:outputPanel>
+            <apex:commandButton rendered="{!NOT(fEditMode)}" value="Editar" action="{!customEdit}" reRender="panelTeste" status="loading"/>  
+            <apex:commandButton rendered="{!fEditMode}" value="Cancelar" action="{!customCancel}" reRender="panelTeste" status="loading"/>  
+            <apex:commandButton rendered="{!fEditMode}" value="Salvar" action="{!customSave}" reRender="panelTeste" status="loading"/>  
+        </apex:pageBlock>
+    </apex:outputPanel> 
+    </apex:form>
+</apex:page>

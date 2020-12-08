@@ -1,0 +1,6 @@
+<aura:component controller="TreinamentoCmp1Controller" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    
+    <aura:attribute name="num" type="string"/>    
+    <lightning:input type="number" name="input1" value="{!v.num}" label="Enter a number" onchange="{!c.myAction1}"/>
+    
+</aura:component>

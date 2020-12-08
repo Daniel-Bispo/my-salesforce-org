@@ -1,0 +1,102 @@
+<apex:page standardController="Account" extensions="AtualizaEnderecoController" action="{!metodoAction}" lightningStylesheets="true">
+    
+    <c:ActionStatus />
+    <apex:form >    
+        <apex:outputPanel id="panel-geral">
+            <apex:outputPanel rendered="{!NOT(fEdicao)}">
+                <apex:pageBlock mode="view">
+                    <apex:pageBlockButtons >
+                        <apex:commandButton action="{!editar}" value="Editar" reRender="panel-geral" status="loading"/>
+                    </apex:pageBlockButtons>
+                    
+                    <apex:pageBlockSection title="Endereço" columns="2">
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Rua" for="account__name"/>
+                            <apex:outputText value="{!fConta.BillingStreet}" id="account__name"/> 
+                        </apex:pageBlockSectionItem>
+                        
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Numero" for="account__site"/>
+                            <apex:outputText value="{!fConta.BillingNumber__c}" id="account__site"/> 
+                        </apex:pageBlockSectionItem>
+                        
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Bairro" for="account__type"/>
+                            <apex:outputText value="{!fConta.BillingNeighborhood__c}" id="account__type"/> 
+                        </apex:pageBlockSectionItem>
+                        
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Cep" for="account__number"/>
+                            <apex:outputText value="{!fConta.BillingPostalCode}" id="account__number"/> 
+                        </apex:pageBlockSectionItem> 
+                        
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Cidade" for="account__number"/>
+                            <apex:outputText value="{!fConta.BillingCity}" id="account__number"/> 
+                        </apex:pageBlockSectionItem> 
+                        
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Estado" for="account__number"/>
+                            <apex:outputText value="{!fConta.BillingState}" id="account__number"/> 
+                        </apex:pageBlockSectionItem> 
+                        
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Pais" for="account__number"/>
+                            <apex:outputText value="{!fConta.BillingCountry}" id="account__number"/> 
+                        </apex:pageBlockSectionItem> 
+                    </apex:pageBlockSection>
+                </apex:pageBlock>
+            </apex:outputPanel>
+            
+            <apex:outputPanel rendered="{!fEdicao}" id="panel-edicao">
+                <apex:pageMessages />
+                <apex:pageBlock title="Minha Conta" mode="edit">
+                    <apex:pageBlockButtons >
+                        <apex:commandButton action="{!save}" value="Save" reRender="panel-geral" status="loading"/>
+                        <apex:commandButton action="{!cancelar}" value="Cancelar" reRender="panel-geral" status="loading"/>
+                    </apex:pageBlockButtons>
+                    
+                    <apex:pageBlockSection title="Endereço" columns="2">
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Rua" for="account__name"/>
+                            <apex:inputText value="{!fConta.BillingStreet}" id="account__name"/> 
+                        </apex:pageBlockSectionItem>
+                        
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Numero" for="account__site"/>
+                            <apex:inputText value="{!fConta.BillingNumber__c}" id="account__site"/> 
+                        </apex:pageBlockSectionItem>
+                        
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Bairro" for="account__type"/>
+                            <apex:inputText value="{!fConta.BillingNeighborhood__c}" id="account__type"/> 
+                        </apex:pageBlockSectionItem>
+                        
+                        <apex:pageBlockSectionItem >
+                            <apex:outputPanel layout="none">
+                                <apex:outputLabel value="Cep" for="account__number"/>
+                                <apex:inputText value="{!fConta.BillingPostalCode}" id="account__number"/> 
+                                <apex:commandButton action="{!buscaEndereco}" value="Consultar Cep" reRender="panel-edicao" status="loading"/>
+                            </apex:outputPanel>
+                        </apex:pageBlockSectionItem> 
+                        
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Cidade" for="account__number"/>
+                            <apex:inputText value="{!fConta.BillingCity}" id="account__number"/> 
+                        </apex:pageBlockSectionItem> 
+                        
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Estado" for="account__number"/>
+                            <apex:inputText value="{!fConta.BillingState}" id="account__number"/> 
+                        </apex:pageBlockSectionItem> 
+                        
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Pais" for="account__number"/>
+                            <apex:inputText value="{!fConta.BillingCountry}" id="account__number"/> 
+                        </apex:pageBlockSectionItem> 
+                    </apex:pageBlockSection>
+                </apex:pageBlock>
+            </apex:outputPanel>  
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

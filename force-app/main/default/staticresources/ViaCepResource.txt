@@ -1,0 +1,1 @@
+{"cep":"19800-00","logradouro":"Rua XI","complemento":"","bairro":"Centro","localidade":"Assis","uf":"SP","ibge":"3504008","gia":"1892","ddd":"18","siafi":"6179"}
